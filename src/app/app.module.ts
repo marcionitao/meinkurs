@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireModule} from 'angularfire2';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,7 +24,8 @@ import { CursoService } from './services/curso.service';
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, 'meinkurs'),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    FormsModule,
   ],
   providers: [CursoService],
   bootstrap: [AppComponent]
