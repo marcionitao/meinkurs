@@ -1,18 +1,20 @@
-<div>
-  <ul class="collection">
+<div *ngIf="cursos?.length > 0; else noCursos" >
+  <ul *ngFor="let curso of cursos; trackBy: trackByFn"  class="collection">
     <li class="collection-item">
       <a href="" class="secondary-content">
-        <i class="material-icons">mode_edit</i>
-        <i class="material-icons">close</i>
+        <i *ngIf="editState == false" (click)="editCurso($event, curso)"  class="material-icons">mode_edit</i>
+        <i *ngIf="editState && cursoToEdit.id == curso.id" (click)="clearState()"  class="material-icons">close</i>
       </a>
-      <strong>Name Kurs</strong>
+      <h5>
+        <strong>{{ curso.name }}</strong>
+      </h5>
       <br>
-      <blockquote>Description</blockquote>
+      <blockquote>{{ curso.description }}</blockquote>
       <br>
-      <span class="my_tag amber"><strong>Price: </strong>15,00€</span>
-      <span class="my_tag amber"><strong>Language: </strong>Portuguese</span>
-      <span class="my_tag amber"><strong>Former: </strong>Ich bin sonst</span>
-      <span class="my_tag amber"><strong>Technology: </strong>Node</span>
+      <span class="my_tag amber"><strong>Price: </strong>{{ curso.price | currency:'EUR':code:'1.2-2' }}</span>
+      <span class="my_tag amber"><strong>Language: </strong>{{ curso.language }}</span>
+      <span class="my_tag amber"><strong>Former: </strong>{{ curso.former }}</span>
+      <span class="my_tag amber"><strong>Technology: </strong>{{ curso.technology }}</span>
 
       <hr>
 
@@ -22,3 +24,9 @@
     </li>
   </ul>
 </div>
+
+<!-- novo template para mostrar -->
+<ng-template #noCursos>
+  <hr>
+  <h5>kein Kurs</h5>
+</ng-template>
