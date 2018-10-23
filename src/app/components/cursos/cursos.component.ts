@@ -29,11 +29,19 @@ export class CursosComponent implements OnInit {
    this.cursoToEdit = null;
  }
 
+ onUpdateCurso(curso: Curso) {
+  this.service.updateCurso(curso);
+  this.clearState();
+ }
+
+ deleteCurso(event, curso: Curso) {
+  this.service.deleteCurso(curso);
+  this.clearState();
+ }
+
  editCurso(event, curso: Curso) {
   this.editState = true;
   this.cursoToEdit = curso;
  }
-
- // Pause 9:03 - video 4
 
 }

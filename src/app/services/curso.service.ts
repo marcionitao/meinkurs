@@ -31,15 +31,17 @@ export class CursoService {
   }
 
   addCurso(curso: Curso) {
-    console.log('novo curso');
+   // console.log('novo curso');
     this.cursoCollection.add(curso);
   }
 
-  deleteCurso(id) {
-    console.log('delete curso'+id);
+  deleteCurso(curso: Curso) {
+    this.cursoDoc = this.afs.doc(`cursos/${curso.id}`);
+    this.cursoDoc.delete();
   }
 
-  updateCurso(id) {
-    console.log('update curso'+id);
+  updateCurso(curso: Curso) {
+    this.cursoDoc = this.afs.doc(`cursos/${curso.id}`);
+    this.cursoDoc.update(curso);
   }
 }
