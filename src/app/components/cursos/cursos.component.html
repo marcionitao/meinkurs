@@ -3,7 +3,7 @@
     <li class="collection-item">
       <!--usamos "routerLink" porque estamos a usar o sistema de rotas-->
       <a routerLink="#" class="secondary-content">
-        <i *ngIf="editState == false" (click)="editCurso($event, curso)"  class="material-icons">mode_edit</i>
+        <i *ngIf="editState == false" (click)="editCurso($event, curso)"  class="material-icons">format_align_left</i>
         <i *ngIf="editState && cursoToEdit.id == curso.id" (click)="clearState()"  class="material-icons">close</i>
       </a>
       <h5>
@@ -21,46 +21,42 @@
       <!-- Sub-form para editar post-->
       <div *ngIf="editState && cursoToEdit.id == curso.id"  class="container-updateCurso">
 
-        <form (ngSubmit)="onUpdateCurso(curso)" class="col s6">
+        <form (ngSubmit)="onUpdateCurso(curso)" class="col s12">
 
           <div class="row">
 
-            <div class="input-field col s6">
+            <div class="input-field col s12">
               <input [(ngModel)]="curso.name" #name="ngModel" type="text" name="name" id="name">
-              <label>Name</label>
+              <label class="active">Name</label>
             </div>
 
-            <div class="input-field col s6">
+            <div class="input-field col s12">
                 <input [(ngModel)]="curso.description" #description="ngModel" type="text" name="description" id="description">
-                <label>Description</label>
+                <label class="active">Description</label>
             </div>
 
-            <div class="input-field col s6">
+            <div class="input-field col s12">
                 <input [(ngModel)]="curso.former" #former="ngModel" type="text" name="former" id="former">
-                <label>Former</label>
+                <label class="active">Former</label>
             </div>
 
-            <div class="input-field col s6">
+            <div class="input-field col s12">
                 <input [(ngModel)]="curso.price" #price="ngModel" type="text" name="price" id="price">
-                <label>Price</label>
+                <label class="active">Price</label>
             </div>
 
-            <div class="input-field col s6">
+            <div class="input-field col s12">
                 <input [(ngModel)]="curso.language" #language="ngModel" type="text" name="language" id="language">
-                <label>Language</label>
+                <label class="active">Language</label>
             </div>
 
-            <div class="input-field col s6">
+            <div class="input-field col s12">
                 <input [(ngModel)]="curso.technology" #technology="ngModel" type="text" name="technology" id="technology">
-                <label>Technology</label>
+                <label class="active">Technology</label>
             </div>
 
-            <button (click)="deleteCurso($event, curso)"  class="btn red right">Delete
-              <i class="material-icons right">delete_forever</i>
-            </button>
-            <button type="submit" class="btn orange">Update
-                <i class="material-icons right">save</i>
-            </button>
+            <button (click)="deleteCurso($event, curso)"  class="btn red right">Delete</button>
+            <button type="submit" class="btn orange">Update</button>
 
           </div>
 

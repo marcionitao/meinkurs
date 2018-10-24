@@ -11,7 +11,9 @@
   padding: 0.3rem;
 }
 
-.secondary-content {
-  color: black;
-  
+.material-icons{
+  display: inline-flex;
+  vertical-align: bottom;
+  font-size: 2.5rem;
+  color:black;
 }

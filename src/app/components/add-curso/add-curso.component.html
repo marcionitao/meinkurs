@@ -1,45 +1,50 @@
 <div class="card">
+  <a routerLink="#" class="secondary-content">
+    <span *ngIf="newState == false" (click)="newCurso()" class="txt">Neu Kurs</span><i *ngIf="newState == false" (click)="newCurso()" class="material-icons">add</i>
+    <span *ngIf="newState == true" (click)="clearState()" class="txt">Close</span><i *ngIf="newState == true" (click)="clearState()"  class="material-icons">close</i>
+  </a>
   <div class="card-content">
-    <span class="card-title">Neu Kurs</span>
-    <form (ngSubmit)="onGuardar(formNew)" #formNew='ngForm' class="col s6">
+    <div *ngIf="newState == true">
+    <!-- <span class="card-title">Neu Kurs</span> -->
+    <form (ngSubmit)="onGuardar(formNew)" #formNew='ngForm' class="col s12">
 
       <div class="row">
 
-        <div class="input-field col s6">
+        <br>
+
+        <div class="input-field col s12">
           <input [(ngModel)]="curso.name" #name="ngModel" type="text" name="name" id="name" placeholder="Name von Kurs">
-          <label>Name</label>
+          <label class="active">Name</label>
         </div>
 
-        <div class="input-field col s6">
+        <div class="input-field col s12">
             <input [(ngModel)]="curso.description" #description="ngModel" type="text" name="description" id="description" placeholder="Description von Kurs">
-            <label>Description</label>
+            <label class="active">Description</label>
         </div>
 
-        <div class="input-field col s6">
+        <div class="input-field col s12">
             <input [(ngModel)]="curso.former" #former="ngModel" type="text" name="former" id="former" placeholder="Former von Kurs">
-            <label>Former</label>
+            <label class="active">Former</label>
         </div>
 
-        <div class="input-field col s6">
+        <div class="input-field col s12">
             <input [(ngModel)]="curso.price" #price="ngModel" type="text" name="price" id="price" placeholder="Price von Kurs">
-            <label>Price</label>
+            <label class="active">Price</label>
         </div>
 
-        <div class="input-field col s6">
+        <div class="input-field col s12">
             <input [(ngModel)]="curso.language" #language="ngModel" type="text" name="language" id="language" placeholder="Language">
-            <label>Language</label>
+            <label class="active">Language</label>
         </div>
 
-        <div class="input-field col s6">
+        <div class="input-field col s12">
             <input [(ngModel)]="curso.technology" #technology="ngModel" type="text" name="technology" id="technology" placeholder="Technology von Kurs">
-            <label>Technology</label>
+            <label class="active">Technology</label>
         </div>
-        <button type="submit" class="btn waves-effect waves-light orange right">
-          Save
-          <i class="material-icons">add_circle</i>
-        </button>
+        <button type="submit" class="btn waves-effect waves-light orange right">Save</button>
       </div>
 
     </form>
+  </div>
   </div>
 </div>

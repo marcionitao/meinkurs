@@ -1,0 +1,19 @@
+/* #add {
+  color: red;
+  font-size: 3rem;
+  text-align: center;
+  font-weight: 600;
+} */
+
+.material-icons{
+  display: inline-flex;
+  vertical-align: bottom;
+  font-size: 2.5rem;
+  color:black;
+}
+
+.txt{
+  font-size: 1.5rem;
+  line-height: 40px;
+  color: black;
+}

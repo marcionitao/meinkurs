@@ -21,6 +21,8 @@ export class AddCursoComponent implements OnInit {
     date: ''
   };
 
+  newState: boolean = false;
+
   constructor(private service: CursoService) { }
 
   ngOnInit() {
@@ -30,6 +32,16 @@ export class AddCursoComponent implements OnInit {
     const dateNow = Date.now();
     this.curso.date = dateNow;
     this.service.addCurso(this.curso);
+    this.clearState();
+  }
+
+  newCurso() {
+    this.newState = true;
+  }
+
+  clearState() {
+    this.newState = false;
+    this.curso = null;
   }
 
 }
