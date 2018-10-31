@@ -31,7 +31,8 @@
             </div>
 
             <div class="input-field col s12">
-                <input [(ngModel)]="curso.description" #description="ngModel" type="text" name="description" id="description">
+                <!-- <input [(ngModel)]="curso.description" #description="ngModel" type="text" name="description" id="description"> -->
+                <textarea [(ngModel)]="curso.description" #description="ngModel" id="description" class="materialize-textarea" name="description" placeholder="Description von Kurs"></textarea>
                 <label class="active">Description</label>
             </div>
 
