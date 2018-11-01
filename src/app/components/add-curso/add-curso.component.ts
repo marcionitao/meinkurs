@@ -14,7 +14,7 @@ export class AddCursoComponent implements OnInit {
 
   rForm: FormGroup; // our Form
 
-  @Input() curso: Curso = {
+  curso: Curso = {
     name: '',
     description: '',
     former: '',
@@ -26,22 +26,23 @@ export class AddCursoComponent implements OnInit {
 
   newState: boolean = false;
 
-  constructor(private service: CursoService, private formBuilder: FormBuilder) {
+  constructor(private service: CursoService, private formBuilder: FormBuilder) { }
 
-    this.rForm = formBuilder.group({
-      'name' : [this.curso.name, Validators.required],
-      'description' : [this.curso.description, Validators.compose(
+  ngOnInit() {
+
+    this.rForm = this.formBuilder.group({
+      'name': [this.curso.name, Validators.required],
+      'description': [this.curso.description, Validators.compose(
         [Validators.required, Validators.minLength(30), Validators.maxLength(500)]
       )],
-      'former' : [this.curso.former, Validators.required],
-      'price' : [this.curso.price, Validators.required],
-      'language' : [this.curso.language, Validators.required],
-      'technology' : [this.curso.technology, Validators.required],
-      'validate' : ''
+      'former': [this.curso.former, Validators.required],
+      'price': [this.curso.price, Validators.required],
+      'language': [this.curso.language, Validators.required],
+      'technology': [this.curso.technology, Validators.required],
+      'validate': ''
     });
-  }
 
-  ngOnInit() { }
+  }
 
   onGuardar(neu) {
     const dateNow = Date.now();
