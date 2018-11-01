@@ -30,6 +30,10 @@ export class CursoService {
     return this.cursos;
   }
 
+  getCurso(curso: Curso) {
+    return this.cursoDoc = this.afs.doc(`cursos/${curso.id}`);
+  }
+
   addCurso(curso: Curso) {
    // console.log('novo curso');
     this.cursoCollection.add(curso);
