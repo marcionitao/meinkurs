@@ -1,9 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { CursoService } from '../../services/curso.service';
-import { Curso } from '../../models/curso';
 
 @Component({
   selector: 'app-add-curso',
@@ -13,17 +11,6 @@ import { Curso } from '../../models/curso';
 export class AddCursoComponent implements OnInit {
 
   rForm: FormGroup; // our Form
-
-  curso: Curso = {
-    name: '',
-    description: '',
-    former: '',
-    price: '',
-    language: '',
-    technology: '',
-    date: ''
-  };
-
   newState: boolean = false;
 
   constructor(private service: CursoService, private formBuilder: FormBuilder) { }
@@ -31,31 +18,26 @@ export class AddCursoComponent implements OnInit {
   ngOnInit() {
 
     this.rForm = this.formBuilder.group({
-      'name': [this.curso.name, Validators.required],
-      'description': [this.curso.description, Validators.compose(
+      'name': ['', Validators.required],
+      'description': ['', Validators.compose(
         [Validators.required, Validators.minLength(30), Validators.maxLength(500)]
       )],
-      'former': [this.curso.former, Validators.required],
-      'price': [this.curso.price, Validators.required],
-      'language': [this.curso.language, Validators.required],
-      'technology': [this.curso.technology, Validators.required],
-      'validate': ''
+      'former': ['', Validators.required],
+      'price': ['', Validators.required],
+      'language': ['', Validators.required],
+      'technology': ['', Validators.required],
+      'validate': '',
+      'date': ''
     });
 
   }
 
-  onGuardar(neu) {
+  onGuardar() {
     const dateNow = Date.now();
-    this.curso.date = dateNow;
+    // para atribuirmos a data atual ao campo data
+    this.rForm.controls['date'].setValue(dateNow);
 
-    this.curso.description = neu.description;
-    this.curso.name = neu.name;
-    this.curso.former = neu.former;
-    this.curso.price = neu.price;
-    this.curso.language = neu.language;
-    this.curso.technology = neu.technology;
-
-    this.service.addCurso(this.curso);
+    this.service.addCurso(this.rForm.value);
     this.clearState();
 
     console.log(this.rForm.value);
@@ -66,8 +48,10 @@ export class AddCursoComponent implements OnInit {
   }
 
   clearState() {
+    // encolhe a barra
     this.newState = false;
-    this.curso = null;
+    // para limpar o formulario
+    this.rForm.reset(this.rForm.value);
   }
 
 }
