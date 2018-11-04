@@ -38,9 +38,10 @@ export class AddCursoComponent implements OnInit {
     this.rForm.controls['date'].setValue(dateNow);
 
     this.service.addCurso(this.rForm.value);
-    this.clearState();
-
     console.log(this.rForm.value);
+
+    // limpa o formulario e retorna a barra
+    this.clearState();
   }
 
   newCurso() {
@@ -50,8 +51,8 @@ export class AddCursoComponent implements OnInit {
   clearState() {
     // encolhe a barra
     this.newState = false;
-    // para limpar o formulario
-    this.rForm.reset(this.rForm.value);
+    // limpa o formulario
+    this.rForm.reset();
   }
 
 }
