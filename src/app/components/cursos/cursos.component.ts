@@ -57,7 +57,7 @@ export class CursosComponent implements OnInit {
     'date': [this.cursoToEdit.date, Validators.required],
     'name': [this.cursoToEdit.name, Validators.required],
     'description': [this.cursoToEdit.description, Validators.compose(
-      [Validators.required, Validators.minLength(30), Validators.maxLength(500)]
+      [Validators.required, Validators.minLength(10), Validators.maxLength(500)]
     )],
     'former': [this.cursoToEdit.former, Validators.required],
     'price': [this.cursoToEdit.price, Validators.required],

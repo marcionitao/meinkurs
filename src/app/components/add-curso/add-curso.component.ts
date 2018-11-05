@@ -20,7 +20,7 @@ export class AddCursoComponent implements OnInit {
     this.rForm = this.formBuilder.group({
       'name': ['', Validators.required],
       'description': ['', Validators.compose(
-        [Validators.required, Validators.minLength(30), Validators.maxLength(500)]
+        [Validators.required, Validators.minLength(10), Validators.maxLength(500)]
       )],
       'former': ['', Validators.required],
       'price': ['', Validators.required],
@@ -29,7 +29,6 @@ export class AddCursoComponent implements OnInit {
       'validate': '',
       'date': ''
     });
-
   }
 
   onGuardar() {

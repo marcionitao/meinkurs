@@ -31,31 +31,49 @@
             <div class="input-field col s12">
               <input type="text" formControlName="name" placeholder="Name von Kurs">
               <label class="active">Name</label>
+               <!-- This goes underneath the Name label -->
+            <div class="alert" *ngIf="!rForm.controls['name'].valid && rForm.controls['name'].touched">Nome é
+              obrigadorio</div>
             </div>
 
             <div class="input-field col s12">
               <textarea formControlName="description" class="materialize-textarea" placeholder="Description von Kurs"></textarea>
               <label class="active">Description</label>
+               <!-- This goes underneath the Name label -->
+            <div class="alert" *ngIf="!rForm.controls['description'].valid && rForm.controls['description'].touched">You
+              must specify a description that's between 10 and 500 characters.</div>
             </div>
 
             <div class="input-field col s12">
               <input type="text" formControlName="former" placeholder="Former von Kurs">
               <label class="active">Former</label>
+              <!-- This goes underneath the Name label -->
+            <div class="alert" *ngIf="!rForm.controls['former'].valid && rForm.controls['former'].touched">Instrutor é
+              obrigatorio</div>
             </div>
 
             <div class="input-field col s12">
               <input type="text" formControlName="price" placeholder="Price von Kurs">
               <label class="active">Price</label>
+               <!-- This goes underneath the Name label -->
+            <div class="alert" *ngIf="!rForm.controls['price'].valid && rForm.controls['price'].touched">Preço é
+              obrigatorio e deve ser um numero</div>
             </div>
 
             <div class="input-field col s12">
               <input type="text" formControlName="language" placeholder="Language">
               <label class="active">Language</label>
+               <!-- This goes underneath the Name label -->
+            <div class="alert" *ngIf="!rForm.controls['language'].valid && rForm.controls['language'].touched">O idioma
+              é obrigatorio</div>
             </div>
 
             <div class="input-field col s12">
               <input type="text" formControlName="technology" placeholder="Technology von Kurs">
               <label class="active">Technology</label>
+               <!-- This goes underneath the Name label -->
+            <div class="alert" *ngIf="!rForm.controls['technology'].valid && rForm.controls['technology'].touched">A
+              tecnologia é obrigatoria</div>
             </div>
 
             <button (click)="deleteCurso($event, curso)" class="btn red right">Delete</button>

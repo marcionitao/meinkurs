@@ -1,51 +1,71 @@
 <div class="card">
   <a routerLink="#" class="secondary-content">
-    <span *ngIf="newState == false" (click)="newCurso()" class="txt">Neu Kurs</span><i *ngIf="newState == false" (click)="newCurso()" class="material-icons">add</i>
-    <span *ngIf="newState == true" (click)="clearState()" class="txt">Close</span><i *ngIf="newState == true" (click)="clearState()"  class="material-icons">close</i>
+    <span *ngIf="newState == false" (click)="newCurso()" class="txt">Neu Kurs</span><i *ngIf="newState == false"
+      (click)="newCurso()" class="material-icons">add</i>
+    <span *ngIf="newState == true" (click)="clearState()" class="txt">Close</span><i *ngIf="newState == true" (click)="clearState()"
+      class="material-icons">close</i>
   </a>
   <div class="card-content">
     <div *ngIf="newState == true">
 
-    <form [formGroup]="rForm" (ngSubmit)="onGuardar()" class="col s12">
+      <form [formGroup]="rForm" (ngSubmit)="onGuardar()" class="col s12">
 
-      <div class="row">
+        <div class="row">
 
-        <br>
+          <br>
 
-        <div class="input-field col s12">
-          <input type="text" formControlName="name" placeholder="Name von Kurs">
-          <label class="active">Name</label>
-        </div>
+          <div class="input-field col s12">
+            <input type="text" formControlName="name" placeholder="Name von Kurs">
+            <label class="active">Name</label>
+            <!-- This goes underneath the Name label -->
+            <div class="alert" *ngIf="!rForm.controls['name'].valid && rForm.controls['name'].touched">Nome é
+              obrigadorio</div>
+          </div>
 
-        <div class="input-field col s12">
-            <textarea  formControlName="description" class="materialize-textarea" placeholder="Description von Kurs"></textarea>
+          <div class="input-field col s12">
+            <textarea formControlName="description" class="materialize-textarea" placeholder="Description von Kurs"></textarea>
             <label class="active">Description</label>
-        </div>
+            <!-- This goes underneath the Name label -->
+            <div class="alert" *ngIf="!rForm.controls['description'].valid && rForm.controls['description'].touched">You
+              must specify a description that's between 10 and 500 characters.</div>
+          </div>
 
-        <div class="input-field col s12">
+          <div class="input-field col s12">
             <input type="text" formControlName="former" placeholder="Former von Kurs">
             <label class="active">Former</label>
-        </div>
+            <!-- This goes underneath the Name label -->
+            <div class="alert" *ngIf="!rForm.controls['former'].valid && rForm.controls['former'].touched">Instrutor é
+              obrigatorio</div>
+          </div>
 
-        <div class="input-field col s12">
+          <div class="input-field col s12">
             <input type="text" formControlName="price" placeholder="Price von Kurs">
             <label class="active">Price</label>
-        </div>
+            <!-- This goes underneath the Name label -->
+            <div class="alert" *ngIf="!rForm.controls['price'].valid && rForm.controls['price'].touched">Preço é
+              obrigatorio</div>
+          </div>
 
-        <div class="input-field col s12">
+          <div class="input-field col s12">
             <input type="text" formControlName="language" placeholder="Language">
             <label class="active">Language</label>
-        </div>
+            <!-- This goes underneath the Name label -->
+            <div class="alert" *ngIf="!rForm.controls['language'].valid && rForm.controls['language'].touched">O idioma
+              é obrigatorio</div>
+          </div>
 
-        <div class="input-field col s12">
+          <div class="input-field col s12">
             <input type="text" formControlName="technology" placeholder="Technology von Kurs">
             <label class="active">Technology</label>
+            <!-- This goes underneath the Name label -->
+            <div class="alert" *ngIf="!rForm.controls['technology'].valid && rForm.controls['technology'].touched">A
+              tecnologia é obrigatoria</div>
+          </div>
+
+          <button type="submit" class="btn waves-effect waves-light orange right" [disabled]="!rForm.valid">Save</button>
         </div>
 
-        <button type="submit" class="btn waves-effect waves-light orange right">Save</button>
-      </div>
-
-    </form>
-  </div>
+      </form>
+    </div>
   </div>
 </div>
