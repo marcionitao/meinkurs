@@ -1,5 +1,16 @@
-<div *ngIf="cursos?.length > 0; else noCursos">
-  <ul *ngFor="let curso of cursos; trackBy: trackByFn" class="collection">
+<div class="col s12">
+
+  <div class="input-field col s12">
+    <i class="material-icons prefix">search</i>
+    <input type="text" #searchInput (keyup)="list(searchInput.value)" id="autocomplete-input" class="autocomplete">
+    <label for="autocomplete-input">Search Curso</label>
+  </div>
+
+</div>
+
+
+<div>
+  <ul *ngFor="let curso of searchList | async; trackBy: trackByFn" class="collection">
     <li class="collection-item">
       <!--usamos "routerLink" porque estamos a usar o sistema de rotas-->
       <a routerLink="#" class="secondary-content">
@@ -10,15 +21,14 @@
       <h5>
         <strong>{{ curso.name }}</strong>
       </h5>
-      <br>
+
       <blockquote>{{ curso.description }}</blockquote>
-      <br>
+
       <span class="my_tag amber"><strong>Price: </strong>{{ curso.price | currency:'EUR':code:'1.2-2' }}</span>
       <span class="my_tag amber"><strong>Language: </strong>{{ curso.language }}</span>
       <span class="my_tag amber"><strong>Former: </strong>{{ curso.former }}</span>
       <span class="my_tag amber"><strong>Technology: </strong>{{ curso.technology }}</span>
 
-      <hr>
       <!-- Sub-form para editar post-->
       <div *ngIf="editState && cursoToEdit.id == curso.id" class="container-updateCurso">
 
@@ -31,49 +41,49 @@
             <div class="input-field col s12">
               <input type="text" formControlName="name" placeholder="Name von Kurs">
               <label class="active">Name</label>
-               <!-- This goes underneath the Name label -->
-            <div class="alert" *ngIf="!rForm.controls['name'].valid && rForm.controls['name'].touched">Nome é
-              obrigadorio</div>
+              <!-- This goes underneath the Name label -->
+              <div class="alert" *ngIf="!rForm.controls['name'].valid && rForm.controls['name'].touched">Nome é
+                obrigadorio</div>
             </div>
 
             <div class="input-field col s12">
               <textarea formControlName="description" class="materialize-textarea" placeholder="Description von Kurs"></textarea>
               <label class="active">Description</label>
-               <!-- This goes underneath the Name label -->
-            <div class="alert" *ngIf="!rForm.controls['description'].valid && rForm.controls['description'].touched">You
-              must specify a description that's between 10 and 500 characters.</div>
+              <!-- This goes underneath the Name label -->
+              <div class="alert" *ngIf="!rForm.controls['description'].valid && rForm.controls['description'].touched">You
+                must specify a description that's between 10 and 500 characters.</div>
             </div>
 
             <div class="input-field col s12">
               <input type="text" formControlName="former" placeholder="Former von Kurs">
               <label class="active">Former</label>
               <!-- This goes underneath the Name label -->
-            <div class="alert" *ngIf="!rForm.controls['former'].valid && rForm.controls['former'].touched">Instrutor é
-              obrigatorio</div>
+              <div class="alert" *ngIf="!rForm.controls['former'].valid && rForm.controls['former'].touched">Instrutor
+                é obrigatorio</div>
             </div>
 
             <div class="input-field col s12">
               <input type="text" formControlName="price" placeholder="Price von Kurs">
               <label class="active">Price</label>
-               <!-- This goes underneath the Name label -->
-            <div class="alert" *ngIf="!rForm.controls['price'].valid && rForm.controls['price'].touched">Preço é
-              obrigatorio e deve ser um numero</div>
+              <!-- This goes underneath the Name label -->
+              <div class="alert" *ngIf="!rForm.controls['price'].valid && rForm.controls['price'].touched">Preço é
+                obrigatorio e deve ser um numero</div>
             </div>
 
             <div class="input-field col s12">
               <input type="text" formControlName="language" placeholder="Language">
               <label class="active">Language</label>
-               <!-- This goes underneath the Name label -->
-            <div class="alert" *ngIf="!rForm.controls['language'].valid && rForm.controls['language'].touched">O idioma
-              é obrigatorio</div>
+              <!-- This goes underneath the Name label -->
+              <div class="alert" *ngIf="!rForm.controls['language'].valid && rForm.controls['language'].touched">O
+                idioma é obrigatorio</div>
             </div>
 
             <div class="input-field col s12">
               <input type="text" formControlName="technology" placeholder="Technology von Kurs">
               <label class="active">Technology</label>
-               <!-- This goes underneath the Name label -->
-            <div class="alert" *ngIf="!rForm.controls['technology'].valid && rForm.controls['technology'].touched">A
-              tecnologia é obrigatoria</div>
+              <!-- This goes underneath the Name label -->
+              <div class="alert" *ngIf="!rForm.controls['technology'].valid && rForm.controls['technology'].touched">A
+                tecnologia é obrigatoria</div>
             </div>
 
             <button (click)="deleteCurso($event, curso)" class="btn red right">Delete</button>
@@ -88,8 +98,8 @@
   </ul>
 </div>
 
-<!-- novo template para mostrar -->
-<ng-template #noCursos>
-  <hr>
-  <h5>kein Kurs</h5>
-</ng-template>
+<div *ngIf="(searchList | async)?.length < 1">
+  <p>
+    No result found :(
+  </p>
+</div>
