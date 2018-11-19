@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { AngularFirestore } from 'angularfire2/firestore';
 
 import { Curso } from '../../models/curso';
 import { CursoService } from '../../services/curso.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cursos',
@@ -14,27 +16,35 @@ import { CursoService } from '../../services/curso.service';
 })
 export class CursosComponent implements OnInit {
 
-  cursos: Curso[];
+  cursos;
   editState = false;
   cursoToEdit: Curso;
+  loadImage;
+  ver;
 
   rForm: FormGroup; // our Form
-
   // Um BehaviorSubject contém um valor. Quando é subscrito, emite o valor imediatamente. Um Subject não possui  valor.
   startAt:BehaviorSubject<string | null> = new BehaviorSubject('');
 
-  searchList: Observable<any[]>;
+  //searchList: Observable<Curso[]>;
 
-  constructor(private service: CursoService, private formBuilder: FormBuilder, public afs: AngularFirestore) { }
+  constructor(private service: CursoService,
+              private formBuilder: FormBuilder,
+              public afs: AngularFirestore,
+              private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
 
-    // this.service.getCursos()
-    //   .subscribe(cursos => {
-    //     this.cursos = cursos; console.log(this.cursos);
-    // });
+    this.service.search(this.startAt)
+    .subscribe(
+      cursos => { this.cursos = cursos; console.log(this.cursos);
+    });
 
-    this.searchList = this.service.search(this.startAt);
+  }
+
+  convert(image) {
+    let mySrc = this.sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + image);
+    return this.loadImage = mySrc;
   }
 
   list(searchText) {

@@ -23,6 +23,7 @@
     "angularfire2": "^5.0.2",
     "core-js": "^2.5.4",
     "firebase": "^5.5.3",
+    "fuctbase64": "^1.4.0",
     "rxjs": "^6.0.0",
     "zone.js": "~0.8.26"
   },
@@ -33,7 +34,7 @@
     "@angular/language-service": "^7.0.2",
     "@types/jasmine": "~2.8.6",
     "@types/jasminewd2": "~2.0.3",
-    "@types/node": "~8.9.4",
+    "@types/node": "^8.9.5",
     "codelyzer": "~4.2.1",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",

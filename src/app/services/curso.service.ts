@@ -13,20 +13,17 @@ export class CursoService {
   cursos: Observable<Curso[]>;
   cursoDoc: AngularFirestoreDocument<Curso>;
 
-  searchList: Observable<Curso[]>;
-  searchCollection: AngularFirestoreCollection<Curso>;
-
   constructor(public afs: AngularFirestore) {
-    this.cursos = afs.collection('cursos').valueChanges();
-    // tudo isso para se conseguir trazeer a data e o id
-    this.cursoCollection = afs.collection<Curso>('cursos');
-    this.cursos = this.cursoCollection.snapshotChanges().pipe(
-      map(actions => actions.map(a => {
-        const data = a.payload.doc.data() as Curso;
-        const id = a.payload.doc.id;
-        return { id, ...data };
-      }))
-    )
+  //   this.cursos = afs.collection('cursos').valueChanges();
+  //   // tudo isso para se conseguir trazeer a data e o id
+  //   this.cursoCollection = afs.collection<Curso>('cursos');
+  //   this.cursos = this.cursoCollection.snapshotChanges().pipe(
+  //     map(actions => actions.map(a => {
+  //       const data = a.payload.doc.data() as Curso;
+  //       const id = a.payload.doc.id;
+  //       return { id, ...data };
+  //     }))
+  //   )
   }
 
   search(start: BehaviorSubject<string>): Observable<any[]> {
@@ -45,7 +42,7 @@ export class CursoService {
             .snapshotChanges().pipe(
               map(changes => {
                 return changes.map(c => {
-                  console.log(c);
+                 // console.log(c);
                   const data = c.payload.doc.data();
                   const id = c.payload.doc.id;
                   return { id, ...data };
@@ -75,4 +72,5 @@ export class CursoService {
     this.cursoDoc = this.afs.doc(`cursos/${curso.id}`);
     this.cursoDoc.update(curso);
   }
+
 }

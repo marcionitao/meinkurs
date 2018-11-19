@@ -9,7 +9,7 @@
 </div>
 
 <div>
-  <ul *ngFor="let curso of searchList | async; trackBy: trackByFn" class="collection">
+  <ul *ngFor="let curso of cursos; trackBy: trackByFn" class="collection">
     <li class="collection-item">
       <!--usamos "routerLink" porque estamos a usar o sistema de rotas-->
       <a routerLink="#" class="secondary-content">
@@ -17,17 +17,32 @@
         <i *ngIf="editState && cursoToEdit.id == curso.id" (click)="clearState()" class="material-icons">close</i>
       </a>
 
-      <h5>
-        <strong>{{ curso.name }}</strong>
-      </h5>
+
+      <div class="row">
+          <div *ngIf=" curso.image !== '' " class="col s2">
+            <!-- passando o valor base64 do campo image por parametro na função para converter em imagem file -->
+            <div [attr.data-target]="convert(curso.image)">
+              <!-- para evitar que o browser faça download da image e tb evitar o erro 404 -->
+              <img [src]="loadImage" class = "responsive-img"/>
+            </div>
+          </div>
+
+          <div class="col s10">
+            <h5>
+              <strong>{{ curso.name }}</strong>
+            </h5>
+          </div>
+        </div>
 
       <blockquote>{{ curso.description }}</blockquote>
 
-      <span class="my_tag amber"><strong>Price: </strong>{{ curso.price | currency:'EUR':code:'1.2-2' }}</span>
-      <span class="my_tag amber"><strong>Language: </strong>{{ curso.language }}</span>
-      <span class="my_tag amber"><strong>Former: </strong>{{ curso.former }}</span>
-      <span class="my_tag amber"><strong>Technology: </strong>{{ curso.technology }}</span>
 
+      <div class="row">
+        <span class="my_tag amber"><strong>Price: </strong>{{ curso.price | currency:'EUR':code:'1.2-2' }}</span>
+        <span class="my_tag amber"><strong>Language: </strong>{{ curso.language }}</span>
+        <span class="my_tag amber"><strong>Former: </strong>{{ curso.former }}</span>
+        <span class="my_tag amber"><strong>Technology: </strong>{{ curso.technology }}</span>
+      </div>
       <!-- Sub-form para editar post-->
       <div *ngIf="editState && cursoToEdit.id == curso.id" class="container-updateCurso">
 
@@ -97,7 +112,7 @@
   </ul>
 </div>
 
-<div *ngIf="(searchList | async)?.length < 1">
+<div *ngIf="(cursos)?.length < 1">
   <p>
     No result found :(
   </p>

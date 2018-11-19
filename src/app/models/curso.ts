@@ -7,4 +7,5 @@ export interface Curso {
   technology?: string,
   date?: any,
   description?: string,
+  image?: string
 }

@@ -11,10 +11,16 @@
   padding: 0.3rem;
 }
 
+img {
+  max-width: 100px;
+    height: 80px;
+    background-color: powderblue;
+}
+
 .material-icons{
   display: inline-flex;
   vertical-align: bottom;
-  font-size: 2.5rem;
+  font-size: 2rem;
   color:black;
 }
 
