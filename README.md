@@ -1,27 +1,16 @@
 # Meinkurs
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.4.
+Meinkurs is an Angular application to list all web personal courses.🚀
 
-## Development server
+## Techonologies
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Angular 
+- Firebase
+- Materialize
 
-## Code scaffolding
+## ScreenShot
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+![screenshot_1](https://user-images.githubusercontent.com/3647246/50053564-b56a9180-0137-11e9-91f5-f12d481d2e04.png)
+![screenshot_2](https://user-images.githubusercontent.com/3647246/50053565-b6032800-0137-11e9-9f0c-d70432c8e6cf.png)
+![screenshot_3](https://user-images.githubusercontent.com/3647246/50053566-b6032800-0137-11e9-9433-7f503703acae.png)
+![screenshot_4](https://user-images.githubusercontent.com/3647246/50053567-b6032800-0137-11e9-80d8-0425aae6c887.png)
